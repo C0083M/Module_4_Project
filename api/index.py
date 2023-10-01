@@ -1,6 +1,8 @@
 import requests
 import json
 
+api_token = "76c0d7790488e"
+
 def get_ip_info():
     try:
 
@@ -21,3 +23,4 @@ def get_ip_info():
 
 if __name__ == '__main__':
     get_ip_info()
+
