@@ -6,6 +6,7 @@ A. Challenges that I ran into include:
 - At one point my site would simply download the index.py file to my system when being opened.
 - Error 501, Server wasnt allowing get requests. fixed with server call function (Serverless Function).
 - I mistakenly wrote "requirements" inside the requirements.txt file instead of "requests".
+- README.md displayed wrong because there was not space between lines. hit enter twice in a certain spot to fix.
 
 B. Vercel requires a server function when running the type of code I wrote. I couldn't find a reason as to why.
 
