@@ -1,14 +1,10 @@
-# Need requests to use the API, need BaseHTTPRequestHandler to use vercel serverless function
 import requests
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-# Class handler invokes a serverless function in vercel. I had to read up on their documentation to figure this out
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
             ip_info = self.get_public_ip_info()
             self.wfile.write(ip_info.encode())
         else:
@@ -26,11 +22,10 @@ class handler(BaseHTTPRequestHandler):
             ip_info = response.json()
 
             if ip_info["status"] == "success":
-                result = "Public IP Address Information:\n"
-                result += f"IP Address: {ip_info['query']}\n"
+                result += f"IPv4: {ip_info['query']}\n"
                 return result
             else:
-                return "Failed to retrieve IP information."
+                return "Error retrieving IP Address"
 
         except requests.exceptions.RequestException as e:
             return f"Error: {e}"
