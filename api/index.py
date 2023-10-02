@@ -24,10 +24,11 @@ class handler(BaseHTTPRequestHandler):
             ip_info = response.json()
 
             if ip_info["status"] == "success":
+                result = "Retrieved IP Address\n"
                 result += f"IPv4: {ip_info['query']}\n"
                 return result
             else:
-                return "Error retrieving IP Address"
+                return "IP retrieval Error"
 
         except requests.exceptions.RequestException as e:
             return f"Error: {e}"
