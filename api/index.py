@@ -1,11 +1,7 @@
 import requests
 import json
-{
- "ipinfo": {
-        "api_key": "76fc0d7790488e"
-}
-}
-from http.server import BaseHTTPRequestHandler
+
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
 
@@ -32,9 +28,10 @@ class handler(BaseHTTPRequestHandler):
         if __name__ == '__main__':
             get_ip_info()
 
-def server():
+def run_vercel_server():
     server_address = ("0.0.0.0", 3000)
     httpd = HTTPServer(server_address, IPCollectorHandler)
-    httpd.server_forever()
-if __name__ == "__main__":
-    server
+    httpd.serve_forever()
+
+    if __name__ == "__main__":
+        run_vercel_server()
