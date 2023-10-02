@@ -1,6 +1,10 @@
 import requests
 import json
-
+{
+ "ipinfo": {
+        "api_key": "76fc0d7790488e"
+}
+}
 from http.server import BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
