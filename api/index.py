@@ -11,9 +11,9 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(ip_info.encode())
         else:
             self.send_response(404)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-type")
             self.end_headers()
-            self.wfile.write("Not Found".encode())
+            self.wfile.write("Error".encode())
    
     def get_public_ip_info(self):
         url = "http://ip-api.com/json/"
