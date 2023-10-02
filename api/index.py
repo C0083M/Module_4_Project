@@ -1,8 +1,8 @@
 import requests
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def ip_GET(self):
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -15,7 +15,7 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write("Error".encode())
    
-    def get_public_ip_info(self):
+    def ip_info(self):
         url = "http://ip-api.com/json/"
 
         try:
