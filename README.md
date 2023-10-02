@@ -8,7 +8,9 @@ A. Challenges that I ran into include:
 - I mistakenly wrote "requirements" inside the requirements.txt file instead of "requests".
 
 B. Vercel requires a server function when running the type of code I wrote. I couldn't find a reason as to why.
+
 C. Improve formatting, Add other fields such as location and ISP.
+
 D. Program is getting the Vercel server IP rather then our home router IP
 
 Vercel URL:
