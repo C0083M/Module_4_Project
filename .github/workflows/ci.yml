@@ -22,9 +22,9 @@ jobs:
       run: |
         python -m pip install pytest
         python -m pip install requests
-      working-directory: ./tests/test.py
+      working-directory: .
 
     - name: Run Pytest
       run: |
-        pytest
-      working-directory: ./tests/test.py
+        pytest tests/test.py
+      working-directory: .
