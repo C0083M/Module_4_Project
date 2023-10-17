@@ -22,7 +22,7 @@ jobs:
       run: |
         python -m pip install pytest
         python -m pip install requests
-      working-directory: master/requirements.txt
+      working-directory: Module-4-Project/
 
     - name: Run Pytest
       run: |
