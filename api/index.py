@@ -26,6 +26,7 @@ class handler(BaseHTTPRequestHandler):
             if ip_info["status"] == "success":
                 result = "Retrieved IP Address\n"
                 result += f"IPv4: {ip_info['query']}\n"
+                result += f"Country: {ip_info['country']}\n"
                 return result
             else:
                 return "IP retrieval Error"
