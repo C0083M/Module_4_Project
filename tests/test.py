@@ -1,5 +1,5 @@
 # tests/test.py
-from api.index import get_public_ip_info
+from Module_4_Project.api.index import get_public_ip_info
 
 class MockResponse:
     def json(self):
