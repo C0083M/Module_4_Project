@@ -5,7 +5,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-type", "text/html")
             self.end_headers()
             ip_info = self.get_public_ip_info()
             self.wfile.write(ip_info.encode())
@@ -24,8 +24,13 @@ class handler(BaseHTTPRequestHandler):
             ip_info = response.json()
 
             if ip_info["status"] == "success":
-                result = "Retrieved IP Address\n"
-                result += f"IPv4: {ip_info['query']}\n"
+                result = "<html><body style='font-family: Arial; color: red;'>"
+                result += "<h1>Retrieved IP Information</h1>"
+                result += f"<p>IP Address: {ip_info['query']}</p>"
+                result += f"<p>Country: {ip_info['country']}</p>"
+                result += f"<p>ISP: {ip_info['isp']}</p>"
+                result += f"<p>Capital: {ip_info['capital']}</p>"
+                result += "</body></html>"
                 return result
             else:
                 return "IP retrieval Error"
