@@ -26,4 +26,4 @@ jobs:
         shell: bash
 
       - name: Run Bats Tests
-        run: bats tests/
+        run: bats tests/test.bats
