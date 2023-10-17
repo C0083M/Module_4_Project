@@ -25,6 +25,5 @@ jobs:
       working-directory: ./
 
     - name: Run Pytest
-      run: |
-        pytest test.py
+      run: pytest tests/test.py
       working-directory: ./tests
