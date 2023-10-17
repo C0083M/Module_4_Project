@@ -1,14 +1,16 @@
 #!/usr/bin/env bats
 
 
+local_install_dir="$HOME/bats-local"
+
 @test "Test when code is uploaded to main branch" {
-  git clone https://github.com/bats-core/bats-core.git
+  git clone https://github.com/bats-core/bats-core.git "$local_install_dir"
 
-  cd bats-core
+  cd "$local_install_dir"
 
-  ./install.sh $HOME
+  ./install.sh "$local_install_dir"
 
-  $HOME/bin/bats your_test_file.bats
+  "$local_install_dir/bin/bats" your_test_file.bats
 
   [ "$status" -eq 0 ]
 
