@@ -28,6 +28,8 @@ class handler(BaseHTTPRequestHandler):
                 result += f"IPv4: {ip_info['query']}\n"
                 result += f"Country: {ip_info['country']}\n"
                 result += f"ISP: {ip_info['isp']}\n"
+                result += f"Region: {ip_info['regionName']}\n"
+                result += f"City: {ip_info['city']}\n"
                 return result
             else:
                 return "IP retrieval Error"
