@@ -1,4 +1,4 @@
-name: CI
+name: Python CI
 
 on:
   push:
@@ -10,24 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Check out code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
 
-      - name: Install Bats
-        run: |
-          git clone https://github.com/bats-core/bats-core.git
-          cd bats-core
-          ./install.sh /usr/local
-        shell: bash
+    - name: Install required packages
+      run: |
+        python -m pip install pytest
+        python -m pip install requests
+      working-directory: ./tests/test.py
 
-      - name: Run Bats Tests
-        run: bats tests/test.bats
+    - name: Run Pytest
+      run: |
+        pytest
+      working-directory: ./tests/test.py
