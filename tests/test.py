@@ -1,16 +1,46 @@
-# test_index.py
+# tests/test.py
+from api.index import get_public_ip_info
 
-from index import function1, function2
+class MockResponse:
+    def json(self):
+        return {
+            "status": "success",
+            "query": "192.168.1.1",
+            "country": "United States",
+            "isp": "Some ISP",
+            "regionName": "California",
+            "city": "Los Angeles"
+        }
 
-def test_function1_case1():
-    result = function1(input_value1)
-    assert result == expected_result1
+def test_get_public_ip_info_success():
+    import requests
+    import requests_mock
 
-def test_function1_case2():
-    result = function1(input_value2)
-    assert result == expected_result2
+    with requests_mock.mock() as m:
+        m.get("http://ip-api.com/json/", text="{}")
 
-def test_function2_case1():
-    result = function2(input_value3)
-    assert result == expected_result3
+        result = get_public_ip_info()
 
+    expected_result = (
+        "Retrieved IP Address\n"
+        "IPv4: 192.168.1.1\n"
+        "Country: United States\n"
+        "ISP: Some ISP\n"
+        "Region: California\n"
+        "City: Los Angeles\n"
+    )
+
+    assert result == expected_result
+
+def test_get_public_ip_info_error():
+    import requests
+    import requests_mock
+
+    with requests_mock.mock() as m:
+        m.get("http://ip-api.com/json/", exc=requests.exceptions.RequestException)
+
+        result = get_public_ip_info()
+
+    expected_result = "Error: RequestException"
+
+    assert result == expected_result
