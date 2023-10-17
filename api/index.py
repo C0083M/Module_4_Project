@@ -24,13 +24,11 @@ class handler(BaseHTTPRequestHandler):
             ip_info = response.json()
 
             if ip_info["status"] == "success":
-                result = "<html><body style='font-family: Arial; color: red;'>"
-                result += "<h1>Retrieved IP Information</h1>"
-                result += f"<p>IP Address: {ip_info['query']}</p>"
-                result += f"<p>Country: {ip_info['country']}</p>"
-                result += f"<p>ISP: {ip_info['isp']}</p>"
-                result += f"<p>Capital: {ip_info['capital']}</p>"
-                result += "</body></html>"
+                result = "Retrieved IP Address\n"
+                result += f"IPv4: {ip_info['query']}\n"
+                result += f"Country: {ip_info['country']}\n"
+                result += f"ISP: {ip_info['isp']}\n"
+                result += f"Capital: {ip_info['capital']}\n"
                 return result
             else:
                 return "IP retrieval Error"
