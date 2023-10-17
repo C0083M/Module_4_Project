@@ -27,4 +27,4 @@ jobs:
     - name: Run Pytest
       run: |
         pytest tests/test.py
-      working-directory: master/tests/test.py
+      working-directory: Module-4-Project/tests/test.py
