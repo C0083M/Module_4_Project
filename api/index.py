@@ -22,7 +22,7 @@ class handler(BaseHTTPRequestHandler):
             response = requests.get(url)
             response.raise_for_status()
             ip_info = response.json()
-
+            #Experiment with font changes and color
             if ip_info["status"] == "success":
                 result = "Retrieved IP Address\n"
                 result += f"IPv4: {ip_info['query']}\n"
