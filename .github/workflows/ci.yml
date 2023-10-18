@@ -1,4 +1,4 @@
-name: ci
+name: Check File Readability
 
 on:
   push:
@@ -6,17 +6,20 @@ on:
       - master
 
 jobs:
-  my_job:
+  check_files:
     runs-on: ubuntu-latest
 
     steps:
-      - name: My Step
-        run: |
-          if [ "$(curl -s -H "Authorization: Bearer ${{ secrets.SECRET_TOKEN }}" -H "Accept: application/vnd.github.antiope-preview+json" \
-          https://api.github.com/repos/C0083M/Module_4_Project/actions/runs | jq -r '.workflow_runs[0].conclusion')" != "success" ]; then
-            echo "CI workflow did not succeed. Merging is not allowed."
-            exit 1
-          fi
+      - name: Check Out Code
+        uses: actions/checkout@v2
 
-        env:
-          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+      - name: Check File Readability
+        run: |
+          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+            if [ -r "$file" ]; then
+              echo "File '$file' is readable. Merging is allowed."
+            else
+              echo "File '$file' is not readable. Merging is not allowed."
+              exit 1
+            fi
+          done
