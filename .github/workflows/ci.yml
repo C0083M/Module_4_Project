@@ -1,4 +1,4 @@
-name: Merge Protection
+name: ci
 
 on:
   push:
